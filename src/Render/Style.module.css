@@ -1,0 +1,14 @@
+.btn_del {
+  border-radius: 4px;
+  transition-duration: 0.4s;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.btn_del:hover {
+  background-color: #d41d1d;
+  color: white;
+}
+.contact_item {
+  margin-bottom: 10px;
+}

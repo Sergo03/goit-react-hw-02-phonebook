@@ -14,22 +14,27 @@ state = {
   
 }
 
- 
+  deleteContact = (contactId) => {
+  
+    this.setState(prevState => ({
+      contacts:prevState.contacts.filter(contact=>contact.id!==contactId),
+    })
+     
+   )
+ }
   
   submitForm = (data) => {
     const { contacts } = this.state;
     const id = shortid.generate();
-    const qwe = !!contacts.find(contact=>contact.name===data.name)
+    const isIncludeName = !!contacts.find(contact => contact.name === data.name)
       
-   qwe && alert('qwe')
-    this.setState(prevState => (
+    isIncludeName && alert(`${data.name} is already in contacts`)
+    !isIncludeName && this.setState(prevState => (
       {
-        contacts:[...prevState.contacts,{...data, id}]
+        contacts: [...prevState.contacts, { ...data, id }]
       }
     )
-     
     )
-    
   }
   
       changeFilter = (e) => {
@@ -47,7 +52,7 @@ state = {
         <Form onSubmit={this.submitForm} />
          <h2>Contacts</h2>
         <Filter value={this.filter} onChange={this.changeFilter }/>
-        <Render value={visibleContacts}/>
+        <Render value={visibleContacts} onDeleteContact={this.deleteContact}/>
       </div>
 
     )

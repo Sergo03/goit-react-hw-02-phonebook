@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import PropsTypes from 'prop-types';
+import style from './Style.module.css'
 
 class Form extends Component{
     state = {
@@ -7,15 +8,10 @@ class Form extends Component{
       number: ''
     }
     
-
-  
   handleinput = (e) => {
    
     this.setState({ [e.currentTarget.name]: e.currentTarget.value })
   };
-
-  
-
       
   handleSubmit = (e) => {
     e.preventDefault();
@@ -34,8 +30,9 @@ class Form extends Component{
     return (
       <form onSubmit={this.handleSubmit}>
         
-        <label > Name
+        <label className={style.label}> Name
           <input
+            className={style.input_name}
             type="text"
             name="name"
            
@@ -45,9 +42,10 @@ class Form extends Component{
             onChange={this.handleinput}
             value={this.state.name}
           />
-        </label> Number
-        <label>
+        </label> 
+        <label className={style.label}>Number
           <input
+            className={style.input_tel}
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -58,13 +56,17 @@ class Form extends Component{
           />
         </label>
 
-        <button type="submit">Add contact</button>
+        <button type="submit" className={style.btn_add}>Add contact</button>
 
       </form>
 
     )
   }
 
+}
+
+Form.propTypes = {
+  onSubmit: PropsTypes.func.isRequired,
 }
 
 export default Form;
